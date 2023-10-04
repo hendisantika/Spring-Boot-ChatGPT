@@ -1,8 +1,11 @@
 package com.hendisantika.springbootchatgpt.controller;
 
+import com.hendisantika.springbootchatgpt.model.SearchRequest;
 import com.hendisantika.springbootchatgpt.service.ChatGPTService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,5 +27,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class ChatGPTRestController {
 
     private final ChatGPTService chatGPTService;
+
+    @PostMapping("/searchChatGPT")
+    public String searchChatGPT(@RequestBody SearchRequest searchRequest) {
+        log.info("searchChatGPT Started query: " + searchRequest.getQuery());
+        return chatGPTService.processSearch(searchRequest.getQuery());
+    }
 
 }
