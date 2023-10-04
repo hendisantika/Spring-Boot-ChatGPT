@@ -67,6 +67,7 @@ public class ChatGPTService {
 
                 return chatGPTResponse.getChoices().get(0).getText();
             } catch (Exception e) {
+                log.info("Error : " + e.getMessage());
                 return "failed";
             }
         } catch (Exception e) {
